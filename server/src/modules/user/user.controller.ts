@@ -15,7 +15,7 @@ export class UserController implements Controller {
   }
 
   private _initRoutes() {
-    this.router.get(`${this.path}/test`, this._get);
+    this.router.get(`${this.path}`, this._get);
   }
 
   private _get = async (req: Request, res: Response, next: NextFunction) => {
