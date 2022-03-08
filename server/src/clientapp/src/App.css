@@ -1,0 +1,29 @@
+:root {
+  --border-color: rgba(0, 0, 0, 0.07);
+  --hover-bg: var(--border-color);
+}
+
+table {
+  border: 1px solid var(--border-color);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+table th,
+table td {
+  padding: 0.75em 1.25em;
+}
+
+table tr {
+  border: 1px solid var(--border-color);
+}
+
+table tbody tr:hover,
+table tbody tr:focus {
+  background-color: var(--hover-bg);
+}
+
+table th:not(:last-of-type),
+table td:not(:last-of-type) {
+  border-right: 1px solid var(--border-color);
+}
