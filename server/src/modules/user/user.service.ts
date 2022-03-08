@@ -1,8 +1,8 @@
 import { UserDataset, UserSchema } from './user.table';
+import { DatabaseService } from '../../database/database.service';
+import { userTable } from '../../database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { userTable } from '../../database';
-import { DatabaseService } from '../../database/database.service';
 
 export class UserService {
   private _databaseService = new DatabaseService();

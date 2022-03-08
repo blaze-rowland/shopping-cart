@@ -1,13 +1,30 @@
-import { Subject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { productTable } from '../../database';
-import { ProductDataset } from './product.table';
+import { ProductDataset, ProductSchema } from './product.table';
 
 export class ProductService {
   constructor() {}
 
   public getAll(): Observable<ProductDataset> {
-    const response = new Subject<ProductDataset>();
-    productTable.find().subscribe((products) => response.next(products));
-    return response.asObservable();
+    return productTable.find();
+  }
+
+  public get(id: number): Observable<ProductSchema> {
+    return productTable.findOne({ condition: { id } });
+  }
+
+  public create(product: ProductSchema): Observable<any> {
+    return productTable.add(product);
+  }
+
+  public update(id: number, product: ProductSchema): Observable<any> {
+    return productTable.update({
+      values: product,
+      condition: { id },
+    });
+  }
+
+  public delete(id: number) {
+    return productTable.delete({ id });
   }
 }

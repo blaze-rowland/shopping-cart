@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { Controller } from './interfaces/controller.interface';
+import { errorMiddleware } from './middlewares/error.middleware';
 dotenv.config();
 
 export class App {
@@ -29,6 +30,7 @@ export class App {
     this._app.use(morgan('dev'));
     this._app.use(express.json());
     this._app.use(express.urlencoded({ extended: false }));
+    this._app.use(errorMiddleware);
   }
 
   private _initControllers(controllers: Controller[]) {

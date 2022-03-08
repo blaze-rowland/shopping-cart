@@ -16,9 +16,9 @@ export class UserController implements Controller {
   }
 
   private _initRoutes() {
-    this.router.get(`${this.path}`, this._getAll);
+    this.router.get(`${this.path}/`, this._getAll);
     this.router.get(`${this.path}/:id`, this._get);
-    this.router.post(`${this.path}`, this._create);
+    this.router.post(`${this.path}/`, this._create);
     this.router.patch(`${this.path}/:id`, this._update);
     this.router.delete(`${this.path}/:id`, this._delete);
   }
@@ -26,19 +26,25 @@ export class UserController implements Controller {
   private _getAll = async (req: Request, res: Response, next: NextFunction) => {
     this._service.getAll().subscribe({
       next: (users) => res.send(users),
+      error: (err) => next(err),
     });
   };
 
   private _get = async (req: Request, res: Response, next: NextFunction) => {
-    this._service.get(parseInt(req.params.id)).subscribe({
+    const id = parseInt(req.params.id);
+
+    this._service.get(id).subscribe({
       next: (user) => res.send(user),
+      error: (err) => next(err),
     });
   };
 
   private _create = async (req: Request, res: Response, next: NextFunction) => {
     const user = req.body.user as UserSchema;
+
     this._service.create({ ...user, createdAt: new Date() }).subscribe({
       next: (user) => res.send({ msg: 'Created', user }),
+      error: (err) => next(err),
     });
   };
 
@@ -48,6 +54,7 @@ export class UserController implements Controller {
 
     this._service.update(id, user).subscribe({
       next: (user) => res.send({ msg: 'Updated', user }),
+      error: (err) => next(err),
     });
   };
 
@@ -56,6 +63,7 @@ export class UserController implements Controller {
 
     this._service.delete(id).subscribe({
       next: (user) => res.send({ msg: 'Deleted', user }),
+      error: (err) => next(err),
     });
   };
 }
