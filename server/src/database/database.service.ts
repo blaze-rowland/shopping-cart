@@ -1,10 +1,11 @@
+import { defer, from, Observable } from 'rxjs';
 import bcrypt from 'bcrypt';
 
 export class DatabaseService {
   constructor() {}
 
-  public async hashPassword(password: string): Promise<string> {
-    return new Promise((resolve: any, reject: any) => {
+  public hashPassword(password: string): Observable<any> {
+    const response = new Promise((resolve: any, reject: any) => {
       try {
         bcrypt.genSalt(10, (errSalt, salt) => {
           if (errSalt) reject(errSalt);
@@ -18,5 +19,7 @@ export class DatabaseService {
         reject(err);
       }
     });
+
+    return defer(() => from(response));
   }
 }

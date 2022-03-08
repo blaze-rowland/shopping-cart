@@ -1,5 +1,6 @@
 import { UserDataset, UserSchema } from './user.table';
-import { Observable } from 'rxjs';
+import { Observable, Subject, pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { userTable } from '../../database';
 import { DatabaseService } from '../../database/database.service';
 
@@ -15,8 +16,14 @@ export class UserService {
     return userTable.findOne({ columns: ['*'], condition: { id } });
   }
 
-  public async create(user: UserSchema): Observable<void> {
-    const hash = await this._databaseService.hashPassword(user.password);
-    return new Observable();
+  public create(user: UserSchema): Observable<any> {
+    return this._databaseService.hashPassword(user.password).pipe(
+      map((password) =>
+        userTable.add({
+          ...user,
+          password,
+        })
+      )
+    );
   }
 }

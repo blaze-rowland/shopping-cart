@@ -36,7 +36,7 @@ export class UserController implements Controller {
   private _create = async (req: Request, res: Response, next: NextFunction) => {
     const user = req.body.user as UserSchema;
     this._service.create({ ...user, createdAt: new Date() }).subscribe({
-      next: (user) => res.send({ msg: 'Created' }),
+      next: (user) => res.send({ msg: 'Created', user }),
     });
   };
 }
