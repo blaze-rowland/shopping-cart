@@ -34,7 +34,7 @@ export class App {
   private _initControllers(controllers: Controller[]) {
     this._app.get('/', (req: Request, res: Response) => {
       res.json({
-        msg: 'You ',
+        msg: 'Welcome to the Shopping Cart API',
       });
     });
 

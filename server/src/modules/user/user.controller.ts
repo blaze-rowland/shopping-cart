@@ -19,6 +19,8 @@ export class UserController implements Controller {
     this.router.get(`${this.path}`, this._getAll);
     this.router.get(`${this.path}/:id`, this._get);
     this.router.post(`${this.path}`, this._create);
+    this.router.patch(`${this.path}/:id`, this._update);
+    this.router.delete(`${this.path}/:id`, this._delete);
   }
 
   private _getAll = async (req: Request, res: Response, next: NextFunction) => {
@@ -37,6 +39,23 @@ export class UserController implements Controller {
     const user = req.body.user as UserSchema;
     this._service.create({ ...user, createdAt: new Date() }).subscribe({
       next: (user) => res.send({ msg: 'Created', user }),
+    });
+  };
+
+  private _update = async (req: Request, res: Response, next: NextFunction) => {
+    const user = req.body.user as UserSchema;
+    const id = parseInt(req.params.id);
+
+    this._service.update(id, user).subscribe({
+      next: (user) => res.send({ msg: 'Updated', user }),
+    });
+  };
+
+  private _delete = async (req: Request, res: Response, next: NextFunction) => {
+    const id = parseInt(req.params.id);
+
+    this._service.delete(id).subscribe({
+      next: (user) => res.send({ msg: 'Deleted', user }),
     });
   };
 }
