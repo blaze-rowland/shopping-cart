@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserSchema } from '../../../../modules/user/user.table';
+import { Card, CardHeader } from '../../shared/styles/Card.style';
 import { DateFormat, formatDate } from '../../utilities/date.util';
 
 function getFullName(user: UserSchema): string {
@@ -12,10 +13,12 @@ interface UserProps {
 
 export const User: React.FC<UserProps> = (props) => {
   return (
-    <tr>
-      <td>{getFullName(props.user)}</td>
-      <td>{props.user.email}</td>
-      <td>{formatDate(props.user.createdAt, DateFormat.MMDDYYYY)}</td>
-    </tr>
+    <Card>
+      <CardHeader>
+        <h2>{getFullName(props.user)}</h2>
+        <p>{formatDate(props.user.createdAt, DateFormat.MMDDYYYY)}</p>
+      </CardHeader>
+      <p>{props.user.email}</p>
+    </Card>
   );
 };

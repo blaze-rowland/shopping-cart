@@ -1,4 +1,5 @@
 import { ProductSchema } from '../../../../modules/product/product.table';
+import { Card, CardHeader } from '../../shared/styles/Card.style';
 import { DateFormat, formatDate } from '../../utilities/date.util';
 
 interface ProductProps {
@@ -6,11 +7,13 @@ interface ProductProps {
 }
 
 export const Product: React.FC<ProductProps> = (props) => {
+  const product = props.product;
   return (
-    <tr>
-      <td>{props.product.name}</td>
-      <td>${props.product.price}</td>
-      <td>{formatDate(props.product.createdAt, DateFormat.MMDDYYYY)}</td>
-    </tr>
+    <Card>
+      <CardHeader>
+        <h2>{product.name}</h2>
+        <p style={{ color: 'green' }}>${product.price}</p>
+      </CardHeader>
+    </Card>
   );
 };

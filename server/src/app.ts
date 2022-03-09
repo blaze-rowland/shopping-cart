@@ -1,8 +1,9 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import path from 'path';
 import { Controller } from './interfaces/controller.interface';
 import { errorMiddleware } from './middlewares/error.middleware';
 dotenv.config();
@@ -16,6 +17,7 @@ export class App {
     this._app = express();
     this._initMiddlewares();
     this._initControllers(controllers);
+    this._serveClient();
   }
 
   public listen() {
@@ -34,14 +36,24 @@ export class App {
   }
 
   private _initControllers(controllers: Controller[]) {
-    this._app.get('/', (req: Request, res: Response) => {
-      res.json({
-        msg: 'Welcome to the Shopping Cart API',
-      });
-    });
-
     controllers.forEach((controller) => {
       this._app.use('/api/v1/', controller.router);
     });
+  }
+
+  private _serveClient() {
+    const rootRouter = express.Router();
+    const buildPath = path.normalize(
+      path.join(__dirname, '../src/clientapp/build')
+    );
+    this._app.use(express.static(buildPath));
+
+    rootRouter.get(
+      '(/*)?',
+      (req: Request, res: Response, next: NextFunction) => {
+        res.sendFile(path.join(buildPath, 'index.html'));
+      }
+    );
+    this._app.use(rootRouter);
   }
 }

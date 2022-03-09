@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ProductSchema } from '../../../../modules/product/product.table';
 import { Loading } from '../../shared/components/Loading.component';
+import { CardList } from '../../shared/styles/Card.style';
 import { Product } from './Product.component';
 
 interface ProductListProps {}
@@ -24,19 +25,7 @@ export const ProductList: React.FC<ProductListProps> = (props) => {
   ));
 
   return products?.length ? (
-    <div>
-      <h1>Products</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Created At</th>
-          </tr>
-        </thead>
-        <tbody>{productComponent}</tbody>
-      </table>
-    </div>
+    <CardList>{productComponent}</CardList>
   ) : (
     <Loading />
   );

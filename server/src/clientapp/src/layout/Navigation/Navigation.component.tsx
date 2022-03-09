@@ -13,13 +13,13 @@ export const Navigation: React.FC<NavigationProps> = () => {
     <NavContainer>
       <Container>
         <NavSection>
-          <NavLinkBrand to='/'></NavLinkBrand>
-          <NavLink to='/'>Users</NavLink>
-          <NavLink to='/products'>Products</NavLink>
+          <NavLinkBrand to="/"></NavLinkBrand>
+          <NavLink to="/">Users</NavLink>
+          <NavLink to="/products">Products</NavLink>
         </NavSection>
         <NavSection>
-          <NavLink to='/'>Login</NavLink>
-          <NavLink to='/'>Register</NavLink>
+          <NavLink to="/">Login</NavLink>
+          <NavLink to="/">Register</NavLink>
         </NavSection>
       </Container>
     </NavContainer>
