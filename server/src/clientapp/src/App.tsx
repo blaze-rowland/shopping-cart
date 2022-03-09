@@ -1,15 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { UserList } from './modules/user/UserList.component';
-import { UserSchema } from '../../modules/user/user.table';
 import { ProductList } from './modules/product/ProductList.component';
+import { Route, Routes } from 'react-router';
+import { Container } from './layout/Container/Container.style';
 
 function App() {
   return (
     <div className='App'>
-      <UserList />
-      <ProductList />
+      <Container>
+        <Routes>
+          <Route path='/' element={<UserList />} />
+          <Route path='products' element={<ProductList />} />
+        </Routes>
+      </Container>
     </div>
   );
 }

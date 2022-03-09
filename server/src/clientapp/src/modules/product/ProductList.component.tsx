@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ProductSchema } from '../../../../modules/product/product.table';
+import { Loading } from '../../shared/components/Loading.component';
 import { Product } from './Product.component';
 
 interface ProductListProps {}
@@ -22,7 +23,7 @@ export const ProductList: React.FC<ProductListProps> = (props) => {
     <Product key={product.id} product={product} />
   ));
 
-  return (
+  return products?.length ? (
     <div>
       <h1>Products</h1>
       <table>
@@ -36,5 +37,7 @@ export const ProductList: React.FC<ProductListProps> = (props) => {
         <tbody>{productComponent}</tbody>
       </table>
     </div>
+  ) : (
+    <Loading />
   );
 };

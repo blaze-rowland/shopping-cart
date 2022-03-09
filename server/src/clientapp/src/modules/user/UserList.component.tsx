@@ -1,6 +1,7 @@
 import { User } from './User.component';
 import { UserSchema } from '../../../../modules/user/user.table';
 import { useEffect, useState } from 'react';
+import { Loading } from '../../shared/components/Loading.component';
 
 interface UserListProps {}
 
@@ -20,7 +21,7 @@ export const UserList: React.FC<UserListProps> = (props) => {
 
   const userComponent = users.map((user) => <User key={user.id} user={user} />);
 
-  return (
+  return users?.length ? (
     <div>
       <h1>Users</h1>
       <table>
@@ -34,5 +35,7 @@ export const UserList: React.FC<UserListProps> = (props) => {
         <tbody>{userComponent}</tbody>
       </table>
     </div>
+  ) : (
+    <Loading />
   );
 };
