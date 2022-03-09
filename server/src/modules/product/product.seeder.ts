@@ -28,6 +28,18 @@ export async function productSeeder() {
         nullable: false,
       },
       {
+        name: 'image',
+        type: 'VARCHAR',
+        size: 255,
+        nullable: true,
+      },
+      {
+        name: 'isPromo',
+        type: 'BOOL',
+        nullable: false,
+        default: '0',
+      },
+      {
         name: 'createdAt',
         type: 'DATETIME',
         nullable: false,
@@ -39,12 +51,14 @@ export async function productSeeder() {
     productTable.add({
       name: 'Box',
       price: 5,
+      isPromo: false,
       createdAt: new Date(),
     });
 
     productTable.add({
       name: 'Television',
       price: 600,
+      isPromo: false,
       createdAt: new Date(),
     });
   }

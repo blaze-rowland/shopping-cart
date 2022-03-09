@@ -4,12 +4,23 @@ export class ProductSchema {
   id?: number;
   name: string;
   price: number;
+  image?: string | any;
+  isPromo: boolean;
   createdAt: Date;
 
-  constructor(id: number, name: string, price: number, createdAt: Date) {
+  constructor(
+    id: number,
+    name: string,
+    price: number,
+    image: string | any,
+    isPromo: boolean,
+    createdAt: Date
+  ) {
     this.id = id;
     this.name = name;
     this.price = price;
+    this.image = image;
+    this.isPromo = isPromo;
     this.createdAt = createdAt;
   }
 }

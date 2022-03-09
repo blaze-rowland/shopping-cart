@@ -40,11 +40,14 @@ export class ProductController implements Controller {
 
   private _create = async (req: Request, res: Response, next: NextFunction) => {
     const product = req.body.product as ProductSchema;
-
-    this._service.create({ ...product, createdAt: new Date() }).subscribe({
-      next: (product) => res.send({ msg: 'Created', product }),
-      error: (err) => next(err),
-    });
+    const image = req.body.formImage;
+    console.log('test', req.body);
+    this._service
+      .create({ ...product, createdAt: new Date() }, image)
+      .subscribe({
+        next: (product) => res.send({ msg: 'Created', product }),
+        error: (err) => next(err),
+      });
   };
 
   private _update = async (req: Request, res: Response, next: NextFunction) => {
