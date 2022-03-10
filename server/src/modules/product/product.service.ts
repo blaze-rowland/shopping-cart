@@ -13,8 +13,7 @@ export class ProductService {
     return productTable.findOne({ condition: { id } });
   }
 
-  public create(product: ProductSchema, image: any): Observable<any> {
-    this._handleImageUpload(image);
+  public create(product: ProductSchema): Observable<any> {
     return productTable.add(product);
   }
 
@@ -27,9 +26,5 @@ export class ProductService {
 
   public delete(id: number) {
     return productTable.delete({ id });
-  }
-
-  private _handleImageUpload(image) {
-    console.log('image', image);
   }
 }

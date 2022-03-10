@@ -7,12 +7,12 @@ import { AddProduct } from './modules/product/AddProduct.component';
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Container>
         <Routes>
-          {/* <Route path='/' element={<UserList />} /> */}
-          <Route path='/' element={<AddProduct />} />
-          <Route path='products' element={<ProductList />} />
+          <Route path="/" element={<UserList />} />
+          <Route path="products" element={<ProductList />} />
+          <Route path="products-add" element={<AddProduct />} />
         </Routes>
       </Container>
     </div>

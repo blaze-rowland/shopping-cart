@@ -2,7 +2,7 @@ import { Request, Router } from 'express';
 import { NextFunction, Response } from 'express-serve-static-core';
 import { Controller } from '../../interfaces/controller.interface';
 import { ProductService } from './product.service';
-import { ProductSchema, ProductTable } from './product.table';
+import { ProductSchema } from './product.table';
 
 export class ProductController implements Controller {
   public path: string;
@@ -40,14 +40,11 @@ export class ProductController implements Controller {
 
   private _create = async (req: Request, res: Response, next: NextFunction) => {
     const product = req.body.product as ProductSchema;
-    const image = req.body.formImage;
-    console.log('test', req.body);
-    this._service
-      .create({ ...product, createdAt: new Date() }, image)
-      .subscribe({
-        next: (product) => res.send({ msg: 'Created', product }),
-        error: (err) => next(err),
-      });
+
+    this._service.create({ ...product, createdAt: new Date() }).subscribe({
+      next: (product) => res.send({ msg: 'Created', product }),
+      error: (err) => next(err),
+    });
   };
 
   private _update = async (req: Request, res: Response, next: NextFunction) => {
