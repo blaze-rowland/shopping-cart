@@ -39,7 +39,7 @@ export class ProductController implements Controller {
   };
 
   private _create = async (req: Request, res: Response, next: NextFunction) => {
-    const product = req.body.product as ProductSchema;
+    const product = req.body as ProductSchema;
 
     this._service.create({ ...product, createdAt: new Date() }).subscribe({
       next: (product) => res.send({ msg: 'Created', product }),

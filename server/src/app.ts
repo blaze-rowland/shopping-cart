@@ -27,12 +27,12 @@ export class App {
   }
 
   private _initMiddlewares() {
-    this._app.use(express.json());
-    this._app.use(express.urlencoded({ extended: true }));
     this._app.use(cors());
     this._app.use(helmet());
     this._app.use(morgan('dev'));
     this._app.use(errorMiddleware);
+    this._app.use(express.json());
+    this._app.use(express.urlencoded({ extended: false }));
   }
 
   private _initControllers(controllers: Controller[]) {
