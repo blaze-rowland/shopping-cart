@@ -19,7 +19,7 @@ export const User: React.FC<UserProps> = (props) => {
         <p>{formatDate(props.user.createdAt, DateFormat.MMDDYYYY)}</p>
       </CardHeader>
       <CardBody>
-        <p>{props.user.email}</p>
+        <p style={{ margin: '0px' }}>{props.user.email}</p>
       </CardBody>
     </Card>
   );

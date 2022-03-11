@@ -11,21 +11,24 @@ export const Card = styled.div`
   border: 1px solid var(--border-color);
   border-radius: 4px;
   box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: transform 0.3s ease;
   grid-area: auto / span 5;
+  overflow: hidden;
   h2 {
     color: var(--color-primary);
     margin: 0;
   }
+`;
 
+export const CardHover = styled(Card)`
+  cursor: pointer;
+  transition: transform 0.3s ease;
   &:hover,
   &:focus {
     transform: translateY(-0.5em) scale(1.01);
   }
 `;
 
-export const CardPromo = styled(Card)`
+export const CardPromo = styled(CardHover)`
   grid-area: auto / span 10;
 `;
 
@@ -41,7 +44,6 @@ export const CardHeader = styled.div`
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5em;
   padding: 0.75em 1.5em;
 
   * {
@@ -51,5 +53,5 @@ export const CardHeader = styled.div`
 `;
 
 export const CardBody = styled.div`
-  padding: 0 1.5em;
+  padding: 1em 1.5em;
 `;
