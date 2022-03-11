@@ -46,7 +46,6 @@ export class HttpService<BodyType> {
     body?: any
   ): Promise<T | unknown> {
     return new Promise(async (resolve, reject) => {
-      console.log('body', body);
       try {
         const response = await fetch(url ?? '', {
           method,
