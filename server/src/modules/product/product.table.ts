@@ -1,4 +1,5 @@
 import Forty from '@forty-boy/sql/lib';
+import { AmountUnitSchema } from '../amountUnit/amountUnit.table';
 
 export class ProductSchema {
   id?: number;
@@ -9,7 +10,7 @@ export class ProductSchema {
   description: string;
   createdAt: Date;
   amount: number;
-  amountUnit?: number; // Foreign Key to units table
+  amountUnitId?: number; // Foreign Key to units table
   discount?: number;
   isPromo?: boolean;
 
@@ -22,7 +23,7 @@ export class ProductSchema {
     description: string,
     createdAt: Date,
     amount: number,
-    amountUnit: number,
+    amountUnitId: number,
     discount: number,
     isPromo: boolean
   ) {
@@ -34,13 +35,18 @@ export class ProductSchema {
     this.description = description;
     this.createdAt = createdAt;
     this.amount = amount;
-    this.amountUnit = amountUnit;
+    this.amountUnitId = amountUnitId;
     this.discount = discount;
     this.isPromo = isPromo;
   }
 }
 
 export type ProductDataset = Array<ProductSchema>;
+
+export interface ProductDto extends ProductSchema {
+  unitShortName: string;
+  unitName: string;
+}
 
 export class ProductTable extends Forty.Table<ProductSchema> {
   constructor(tableName: string, products: ProductDataset = []) {

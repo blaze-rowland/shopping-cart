@@ -1,4 +1,7 @@
-import { ProductSchema } from '../../../../modules/product/product.table';
+import {
+  ProductDto,
+  ProductSchema,
+} from '../../../../modules/product/product.table';
 import {
   Card,
   CardBody,
@@ -7,7 +10,7 @@ import {
 } from '../../shared/styles/Card.style';
 
 interface ProductProps {
-  product: ProductSchema;
+  product: ProductDto;
 }
 
 export const Product: React.FC<ProductProps> = (props) => {
