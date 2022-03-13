@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Tag } from './Tag.style';
 interface StyledCardProduct {
   discount?: number;
 }
@@ -10,17 +10,15 @@ interface StyledCardProductPrice {
 
 export const CardList = styled.div`
   display: grid;
-  // grid-template-columns: repeat(20, 1fr);
   grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
   gap: 1em;
 `;
 
 export const Card = styled.div`
-  background-color: #fff;
+  background-color: var(--color-white);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.2);
-  // grid-area: auto / span 5;
   overflow: hidden;
 `;
 
@@ -57,13 +55,13 @@ export const CardBody = styled.div`
 `;
 
 export const CardBrand = styled.h5`
-  color: #979797;
+  color: var(--color-gray-400);
   font-size: 0.8em;
   text-transform: uppercase;
 `;
 
 export const CardTitle = styled.h4`
-  color: #5b5d62;
+  color: var(--color-gray-500);
   font-size: 1.2em;
 `;
 
@@ -79,19 +77,14 @@ export const CardMeta = styled.div`
   }
 `;
 
-export const CardTag = styled.div`
-  background-color: #edf0e6;
-  border-radius: 500px;
-  color: #829b50;
-  padding: 0.5em 1.5em;
+export const CardTag = styled(Tag)`
   position: absolute;
-  font-size: 0.8em;
   top: 1em;
   left: 1em;
 `;
 
 export const CardProductQuantity = styled.div`
-  color: #998a8a;
+  color: var(--color-gray-400);
   font-size: 0.9em;
   font-weight: 500;
 `;
@@ -101,15 +94,15 @@ export const CardProductPrice = styled.span<StyledCardProductPrice>`
 
   ${(props) => {
     if (props.discount !== undefined && props.discount > 0)
-      return 'color: #ba452d';
+      return 'color: var(--color-red-500)';
     if (props.discount === undefined || props.discount === 0)
-      return 'color: #5b5d62';
+      return 'color: var(--color-gray-500)';
   }}
 `;
 
 export const CardFooter = styled.div`
   background-color: var(--color-primary);
-  color: #fff;
+  color: var(--color-white);
   font-size: 0.9em;
   padding: 0.25em 1.5em;
   text-align: center;
@@ -124,20 +117,13 @@ export const CardProduct = styled(CardHover)<StyledCardProduct>`
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-self: self-start;
+  // align-self: self-start;
+  justify-content: flex-end;
 
   a {
     color: currentColor;
     text-decoration: none;
   }
-
-  ${(props) =>
-    props.discount !== undefined && props.discount > 0
-      ? `
-    padding-bottom: 29px;
-    position: relative;
-  `
-      : ''};
 
   ${CardHeader} {
     display: flex;
@@ -155,12 +141,5 @@ export const CardProduct = styled(CardHover)<StyledCardProduct>`
 
   ${CardBody} p:last-of-type {
     margin: 0;
-  }
-
-  ${CardFooter} {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
   }
 `;

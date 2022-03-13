@@ -1,14 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import {
-  ProductDataset,
-  ProductDto,
-  ProductSchema,
-} from '../../../../modules/product/product.table';
-import { Loading } from '../../shared/components/Loading.component';
-import { HttpService } from '../../shared/services/http.service';
-import { CardList } from '../../shared/styles/Card.style';
-import { Product } from './Product.component';
+import { ProductDto } from '../../../../../../modules/product/product.table';
+import { Loading } from '../../../../shared/components/Loading.component';
+import { HttpService } from '../../../../shared/services/http.service';
+import { CardList } from '../../../../shared/styles/Card.style';
+import { Product } from '../Product/Product.component';
 
 interface ProductListProps {}
 
@@ -34,7 +30,7 @@ export const ProductList: React.FC<ProductListProps> = (props) => {
   ));
 
   return products?.length ? (
-    <CardList>{productComponent}</CardList>
+    <CardList style={{ marginTop: '2rem;' }}>{productComponent}</CardList>
   ) : (
     <Loading />
   );

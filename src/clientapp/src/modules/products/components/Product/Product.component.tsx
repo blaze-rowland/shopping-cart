@@ -1,4 +1,4 @@
-import { ProductDto } from '../../../../modules/product/product.table';
+import { ProductDto } from '../../../../../../modules/product/product.table';
 import {
   CardBody,
   CardHeader,
@@ -11,7 +11,8 @@ import {
   CardTag,
   CardProductPrice,
   CardProductQuantity,
-} from '../../shared/styles/Card.style';
+} from '../../../../shared/styles/Card.style';
+import { truncate } from '../../../../utilities/text.util';
 
 interface ProductProps {
   product: ProductDto;
@@ -65,7 +66,7 @@ export const Product: React.FC<ProductProps> = (props) => {
           </CardMeta>
         </CardHeader>
         <CardBody>
-          <p>{product.description}</p>
+          <p>{truncate(product.description)}</p>
         </CardBody>
         {hasDiscount() && (
           <CardFooter>
