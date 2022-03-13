@@ -13,4 +13,5 @@ export const Container = styled.div<ContainerProps>`
 export const ContainerGrid = styled(Container)`
   max-width: unset;
   margin: inherit;
+  position: relative;
 `;

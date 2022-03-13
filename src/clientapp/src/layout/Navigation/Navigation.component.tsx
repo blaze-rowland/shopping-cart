@@ -1,4 +1,4 @@
-import { Container } from '../Container/Container.style';
+import { Button } from '../../shared/styles/Button.style';
 import {
   NavContainer,
   NavLinkBrand,
@@ -14,10 +14,10 @@ export const Navigation: React.FC<NavigationProps> = () => {
       <NavSection>
         <NavLinkBrand to="/"></NavLinkBrand>
         <NavLink to="/">Products</NavLink>
+        <NavLink to="users">Users</NavLink>
       </NavSection>
       <NavSection>
-        <NavLink to="/">Login</NavLink>
-        <NavLink to="/">Register</NavLink>
+        <Button>Login / Register</Button>
       </NavSection>
     </NavContainer>
   );

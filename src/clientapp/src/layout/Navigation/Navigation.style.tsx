@@ -34,8 +34,11 @@ export const NavLink = styled(Link)`
 
 export const NavLinkBrand = styled(Link)`
   background-image: url(${logo});
-  background-size: contain;
-  margin-right: 1.5em;
   height: 5em;
   width: 5em;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 1.5em;
 `;

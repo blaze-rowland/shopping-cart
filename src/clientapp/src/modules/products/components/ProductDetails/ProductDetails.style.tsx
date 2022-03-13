@@ -10,7 +10,7 @@ export const ProductDetail = styled.div`
 
 export const ProductDetailHeader = styled.div`
   background-color: var(--color-gray-500);
-  color: #fff;
+  color: var(--color-white);
   font-size: 0.9em;
   font-weight: 500;
   padding: 0.5em 1em;

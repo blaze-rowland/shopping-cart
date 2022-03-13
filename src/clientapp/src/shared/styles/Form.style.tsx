@@ -37,10 +37,19 @@ export const FormLabel = styled.label`
 `;
 
 export const FormControl = styled.input`
-  color: rgba(0, 0, 0, 0.78);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 6px;
+  color: var(--color-gray-400);
   font-size: 1em;
-  line-height: 1.8;
+  font-weight: 500;
+  line-height: 2.8;
   text-indent: 0.25em;
+  transition: box-shadow 0.1s ease;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 18px -4px var(--color-primary);
+  }
 `;
 
 export const FormActions = styled.div`

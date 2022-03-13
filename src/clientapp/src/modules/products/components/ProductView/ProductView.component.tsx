@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ProductDto } from '../../../../../../modules/product/product.table';
 import { Container } from '../../../../layout/Container/Container.style';
+import { Loading } from '../../../../shared/components/Loading/Loading.component';
 import { HttpService } from '../../../../shared/services/http.service';
 import { Button } from '../../../../shared/styles/Button.style';
 import {
@@ -18,17 +19,15 @@ import { ProductViewContainer } from './ProductView.style';
 interface ProductViewProps {}
 
 export const ProductView: React.FC<ProductViewProps> = () => {
-  const productService = new HttpService(
-    'http://localhost:8000/api/v1/products'
-  );
-  const [product, setProduct] = useState<ProductDto>();
+  // Globals
   const { id } = useParams();
+  const productService = new HttpService(
+    `${process.env.REACT_APP_SERVER_URL}/products`
+  );
 
-  const getProduct = (): void => {
-    productService
-      .get<ProductDto>(`${productService.url}/${id}`)
-      .subscribe((response) => setProduct(response));
-  };
+  // State
+  const [loading, setLoading] = useState<boolean>(true);
+  const [product, setProduct] = useState<ProductDto>();
 
   useEffect(() => {
     if (!product) getProduct();
@@ -42,7 +41,21 @@ export const ProductView: React.FC<ProductViewProps> = () => {
     };
   });
 
-  return (
+  // Fetch Data
+  const getProduct = (): void => {
+    productService
+      .get<ProductDto>(`${productService.url}/${id}`)
+      .subscribe((response) => initializeProduct(response));
+  };
+
+  const initializeProduct = (product: ProductDto): void => {
+    setLoading(false);
+    setProduct(product);
+  };
+
+  return loading ? (
+    <Loading />
+  ) : (
     <Container hasMarginTop={true}>
       <ProductViewContainer>
         <Card hasShadow={false}>
@@ -51,15 +64,15 @@ export const ProductView: React.FC<ProductViewProps> = () => {
 
         <div>
           <h5>{product?.brandName}</h5>
-          <h2 style={{ margin: '0.25em 0' }}>{product?.name}</h2>
+          <h1 style={{ margin: '0.15em 0' }}>{product?.name}</h1>
           <h3>
             <ProductPrice product={product} includeTag={true} />
           </h3>
           <h5 style={{ marginTop: '2em' }}>Size</h5>
-          <h4>
+          <h2>
             {product?.quantity}
             {product?.unitShortName}
-          </h4>
+          </h2>
           <Button size="large" style={{ margin: '1em 0' }}>
             Add to Cart
           </Button>

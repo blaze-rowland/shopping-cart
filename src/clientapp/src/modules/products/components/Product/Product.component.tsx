@@ -10,10 +10,10 @@ import {
   CardTitle,
   CardMeta,
   CardTag,
-  CardProductPrice,
   CardProductQuantity,
 } from '../../../../shared/styles/Card.style';
-import { calculatePrice, hasDiscount } from '../../../../utilities/price.util';
+import { StyledTagColor } from '../../../../shared/styles/Tag.style';
+import { hasDiscount } from '../../../../utilities/price.util';
 import { truncate } from '../../../../utilities/text.util';
 import { ProductPrice } from './ProductPrice.component';
 
@@ -24,10 +24,27 @@ interface ProductProps {
 export const Product: React.FC<ProductProps> = (props) => {
   const { product } = props;
 
+  const getProductTagColor = (tag: string): StyledTagColor => {
+    switch (tag.toLowerCase()) {
+      case 'sativa':
+        return 'error';
+      case 'hybrid':
+        return 'success';
+      case 'indica':
+        return 'info';
+      case 'cbd':
+        return 'alternate';
+      default:
+        return 'success';
+    }
+  };
+
   return (
     <CardProduct discount={product.discount}>
       <Link to={`/product/${product.id}`}>
-        <CardTag>{product.tagName}</CardTag>
+        <CardTag backgroundColor={getProductTagColor(product.tagName)}>
+          {product.tagName}
+        </CardTag>
         <CardImage src={product.image} />
         <CardHeader>
           <CardBrand>{product.brandName}</CardBrand>

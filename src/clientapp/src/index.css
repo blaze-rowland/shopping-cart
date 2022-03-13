@@ -3,6 +3,7 @@
   --hover-bg: var(--color-gray-200);
 
   --color-primary: #ff9800;
+  --color-primary-hover: #e68900;
 
   --color-white: #fff;
 
@@ -12,9 +13,16 @@
   --color-gray-500: #5b5d62;
 
   --color-green-300: #edf0e6;
-  --color-green-400: #829b50;
+  --color-green-500: #829b50;
 
+  --color-blue-300: #e1e6ef;
+  --color-blue-500: #315692;
+
+  --color-red-300: #f5e4e1;
   --color-red-500: #ba452d;
+
+  --color-purple-300: #e7e2e9;
+  --color-purple-500: #5d3678;
 
   --z-index-nav: 5;
 
@@ -22,6 +30,17 @@
 
   --height-nav: 80px;
   --width-container: 1280px;
+  --width-product-nav: 360px;
+}
+
+.dark {
+  --color-white: rgba(0, 0, 0, 0.68);
+  --color-gray-500: rgb(240, 240, 240);
+  --color-gray-400: rgb(220, 220, 220);
+  --color-gray-200: #979797;
+  --color-gray-100: #5b5d62;
+
+  --font-color: rgb(255, 255, 255);
 }
 
 *,
@@ -64,6 +83,7 @@ p {
   margin: 0;
 }
 
+h1,
 h2,
 h3,
 h4 {
