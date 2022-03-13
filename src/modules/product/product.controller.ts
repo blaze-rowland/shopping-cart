@@ -32,7 +32,7 @@ export class ProductController implements Controller {
   private _get = async (req: Request, res: Response, next: NextFunction) => {
     const id = parseInt(req.params.id);
 
-    this._service.get(id).subscribe({
+    this._service.getDto(id).subscribe({
       next: (user) => res.send(user),
       error: (err) => next(err),
     });

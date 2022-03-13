@@ -6,20 +6,14 @@ import { Container } from '../Container/Container.style';
 
 export const NavContainer = styled.nav`
   background-color: var(--color-white);
-  box-shadow: 0 4px 10px -6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 10px -6px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
   height: var(--height-nav);
+  padding: 0 var(--padding-x);
   position: sticky;
   top: 0;
   z-index: var(--z-index-nav);
-
-  ${Container} {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-    padding: 0 var(--padding-x);
-  }
 `;
 
 export const NavSection = styled.div`

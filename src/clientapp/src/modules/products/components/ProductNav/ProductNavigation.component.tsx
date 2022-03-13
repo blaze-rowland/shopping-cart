@@ -13,16 +13,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface ProductNavigationProps {}
 
 export const ProductNavigation: React.FC<ProductNavigationProps> = () => {
-  const [showBody, setShowBody] = useState<boolean>(false);
+  const [showStrain, setShowStrain] = useState<boolean>(true);
 
   return (
     <ProductNav>
       <ProductNavSection>
-        <ProductNavHeader onClick={() => setShowBody(!showBody)}>
+        <ProductNavHeader onClick={() => setShowStrain(!showStrain)}>
           <h4>Strain Type</h4>
-          <FontAwesomeIcon icon={showBody ? faMinus : faPlus} />
+          <FontAwesomeIcon icon={showStrain ? faMinus : faPlus} />
         </ProductNavHeader>
-        {showBody && (
+        {showStrain && (
           <ProductNavBody>
             <ProductNavTags>
               <ProductNavTag>Sativa</ProductNavTag>

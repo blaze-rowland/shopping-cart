@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { unitTable, productTable, brandTable, tagTable } from '../../database';
 import { ProductDataset, ProductDto, ProductSchema } from './product.table';
 
@@ -11,6 +11,14 @@ export class ProductService {
 
   public get(id: number): Observable<ProductSchema> {
     return productTable.findOne({ condition: { id } });
+  }
+
+  public getDto(id: number): Observable<ProductDto> {
+    const subject = new Subject<ProductDto>();
+    this.getAllDto().subscribe((product) =>
+      subject.next(product.filter((x) => x.id === id)[0])
+    );
+    return subject.asObservable();
   }
 
   public getAllDto(): Observable<Array<ProductDto>> {

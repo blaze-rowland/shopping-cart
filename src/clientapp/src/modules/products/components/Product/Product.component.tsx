@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ProductDto } from '../../../../../../modules/product/product.table';
 import {
   CardBody,
@@ -12,7 +13,9 @@ import {
   CardProductPrice,
   CardProductQuantity,
 } from '../../../../shared/styles/Card.style';
+import { calculatePrice, hasDiscount } from '../../../../utilities/price.util';
 import { truncate } from '../../../../utilities/text.util';
+import { ProductPrice } from './ProductPrice.component';
 
 interface ProductProps {
   product: ProductDto;
@@ -21,20 +24,9 @@ interface ProductProps {
 export const Product: React.FC<ProductProps> = (props) => {
   const { product } = props;
 
-  const calculatePrice = (price: number, discount?: number): number => {
-    if (!discount) return price;
-
-    return price * ((100 - discount) / 100);
-  };
-
-  const hasDiscount = (): boolean => {
-    return product.discount !== undefined && product?.discount > 0;
-  };
-
   return (
     <CardProduct discount={product.discount}>
-      {' '}
-      <a href={product.brandUrl} rel="noopener noreferrer" target="_blank">
+      <Link to={`/product/${product.id}`}>
         <CardTag>{product.tagName}</CardTag>
         <CardImage src={product.image} />
         <CardHeader>
@@ -46,36 +38,20 @@ export const Product: React.FC<ProductProps> = (props) => {
               {product.unitShortName}
             </CardProductQuantity>
 
-            <div>
-              <CardProductPrice discount={product.discount}>
-                ${calculatePrice(product.price, product.discount)}
-              </CardProductPrice>
-
-              {hasDiscount() && (
-                <CardProductPrice
-                  discount={undefined}
-                  style={{
-                    textDecoration: 'line-through',
-                    marginLeft: '0.5em',
-                  }}
-                >
-                  ${product.price}
-                </CardProductPrice>
-              )}
-            </div>
+            <ProductPrice product={product}></ProductPrice>
           </CardMeta>
         </CardHeader>
         <CardBody>
           <p>{truncate(product.description)}</p>
         </CardBody>
-        {hasDiscount() && (
+        {hasDiscount(product) && (
           <CardFooter>
             <p>
               <strong>{product.discount}% OFF</strong>
             </p>
           </CardFooter>
         )}
-      </a>
+      </Link>
     </CardProduct>
   );
 };

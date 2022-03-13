@@ -1,7 +1,6 @@
 :root {
   --font-color: rgba(0, 0, 0, 0.87);
-  --border-color: rgba(0, 0, 0, 0.07);
-  --hover-bg: var(--border-color);
+  --hover-bg: var(--color-gray-200);
 
   --color-primary: #ff9800;
 
@@ -22,6 +21,7 @@
   --padding-x: 1.5em;
 
   --height-nav: 80px;
+  --width-container: 1280px;
 }
 
 *,
@@ -46,6 +46,36 @@ body {
   color: var(--font-color);
 }
 
+.bg--white {
+  background-color: var(--color-white);
+}
+
 table {
   width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+h2,
+h3,
+h4 {
+  color: var(--color-gray-500);
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5 {
+  color: var(--color-gray-400);
+  font-size: 0.8em;
+  text-transform: uppercase;
 }

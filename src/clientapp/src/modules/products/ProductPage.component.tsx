@@ -9,7 +9,7 @@ export const ProductPage: React.FC<ProductPageProps> = () => {
   return (
     <ProductPageContainer>
       <ProductNavigation />
-      <ContainerGrid>
+      <ContainerGrid hasMarginTop={true}>
         <ProductList />
       </ContainerGrid>
     </ProductPageContainer>

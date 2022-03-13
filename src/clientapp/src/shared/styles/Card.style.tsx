@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 import { Tag } from './Tag.style';
+
+interface StyledCard {
+  hasShadow?: boolean;
+}
+
 interface StyledCardProduct {
   discount?: number;
 }
@@ -8,18 +13,25 @@ interface StyledCardProductPrice {
   discount?: number;
 }
 
+interface StyledCardImageProps {
+  size?: 'small' | 'medium' | 'large';
+  padded?: boolean;
+}
+
 export const CardList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1em;
 `;
 
-export const Card = styled.div`
+export const Card = styled.div<StyledCard>`
   background-color: var(--color-white);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--color-gray-200);
   border-radius: 8px;
   box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+
+  ${(props) => props?.hasShadow === false && 'box-shadow: none;'}
 `;
 
 export const CardHover = styled(Card)`
@@ -30,16 +42,19 @@ export const CardHover = styled(Card)`
     transform: translateY(-0.5em) scale(1.01);
   }
 `;
-export const CardImage = styled.img`
+export const CardImage = styled.img<StyledCardImageProps>`
   object-fit: cover;
   height: 15em;
   overflow: hidden;
   width: 100%;
+
+  ${(props) => props?.size === 'large' && 'width: 100%; height: 100%;'}
+  ${(props) => props?.padded && 'padding: 1em;'}
 `;
 
 export const CardHeader = styled.div`
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--color-gray-200);
   display: flex;
   justify-content: space-between;
   padding: 0.75em 1.5em;
@@ -71,7 +86,7 @@ export const CardMeta = styled.div`
   margin: 0.75em 0;
 
   div:not(:last-of-type) {
-    border-right: 1px solid var(--border-color);
+    border-right: 1px solid var(--color-gray-200);
     margin-right: 0.5em;
     padding-right: 0.5em;
   }
