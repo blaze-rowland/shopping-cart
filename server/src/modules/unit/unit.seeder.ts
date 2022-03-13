@@ -1,11 +1,11 @@
 import { SqlService } from '@forty-boy/sql';
-import { AmountUnitTable } from './amountUnit.table';
+import { UnitTable } from './unit.table';
 
-export async function amountUnitSeeder() {
-  const amountUnitTable = new AmountUnitTable('amountUnits');
+export async function unitSeeder() {
+  const unitTable = new UnitTable('units');
 
   async function createTable() {
-    const sqlService = new SqlService(amountUnitTable.tableName);
+    const sqlService = new SqlService(unitTable.tableName);
     await sqlService.createTableQuery([
       {
         name: 'id',
@@ -30,24 +30,29 @@ export async function amountUnitSeeder() {
     ]);
   }
 
-  async function createAmountUnits() {
-    amountUnitTable.add({
+  async function createUnits() {
+    unitTable.add({
       name: 'Grams',
       shortName: 'g',
     });
 
-    amountUnitTable.add({
+    unitTable.add({
       name: 'Milligrams',
       shortName: 'mg',
     });
 
-    amountUnitTable.add({
+    unitTable.add({
       name: 'Ounce',
       shortName: 'oz',
+    });
+
+    unitTable.add({
+      name: 'Pound',
+      shortName: 'lb',
     });
   }
 
   await createTable();
-  await createAmountUnits();
+  await createUnits();
   console.log('Created AmountUnits table and seeded');
 }

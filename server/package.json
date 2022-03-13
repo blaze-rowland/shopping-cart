@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run dev\" \"npm run watch\"",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "concurrently \"npm run dev\" \"npm run watch\"",
+    "start-client": "npm --prefix ./src/clientapp run start",
     "dev": "tsc --watch",
     "watch": "nodemon lib/index.js"
   },
@@ -12,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@forty-boy/sql": "^1.0.3",
+    "@forty-boy/sql": "^1.0.4",
     "@tsconfig/node12": "^1.0.9",
     "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",

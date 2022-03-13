@@ -1,51 +1,56 @@
 import Forty from '@forty-boy/sql/lib';
-import { AmountUnitSchema } from '../amountUnit/amountUnit.table';
 
 export class ProductSchema {
   id?: number;
   name: string;
-  brand: string;
+  brandId: number;
+  tagId?: number;
   price: number;
   image: string;
   description: string;
-  createdAt: Date;
-  amount: number;
-  amountUnitId?: number; // Foreign Key to units table
+  quantity: number;
   discount?: number;
   isPromo?: boolean;
+  unitId?: number; // Foreign Key to units table
+  createdAt: Date;
 
   constructor(
     id: number,
     name: string,
-    brand: string,
+    brandId: number,
+    tagId: number,
     price: number,
     image: string,
     description: string,
-    createdAt: Date,
-    amount: number,
-    amountUnitId: number,
+    quantity: number,
     discount: number,
-    isPromo: boolean
+    isPromo: boolean,
+    unitId: number,
+    createdAt: Date
   ) {
     this.id = id;
     this.name = name;
-    this.brand = brand;
+    this.brandId = brandId;
+    this.tagId = tagId;
     this.price = price;
     this.image = image;
     this.description = description;
-    this.createdAt = createdAt;
-    this.amount = amount;
-    this.amountUnitId = amountUnitId;
+    this.quantity = quantity;
     this.discount = discount;
     this.isPromo = isPromo;
+    this.unitId = unitId;
+    this.createdAt = createdAt;
   }
 }
 
 export type ProductDataset = Array<ProductSchema>;
 
 export interface ProductDto extends ProductSchema {
-  unitShortName: string;
   unitName: string;
+  unitShortName: string;
+  brandName: string;
+  brandUrl: string;
+  tagName: string;
 }
 
 export class ProductTable extends Forty.Table<ProductSchema> {

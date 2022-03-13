@@ -23,7 +23,7 @@ export class ProductController implements Controller {
   }
 
   private _getAll = async (req: Request, res: Response, next: NextFunction) => {
-    this._service.getAll().subscribe({
+    this._service.getAllDto().subscribe({
       next: (products) => res.send(products),
       error: (err) => next(err),
     });

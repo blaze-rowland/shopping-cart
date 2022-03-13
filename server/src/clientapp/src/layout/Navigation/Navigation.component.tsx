@@ -14,8 +14,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
       <Container>
         <NavSection>
           <NavLinkBrand to="/"></NavLinkBrand>
-          <NavLink to="/">Users</NavLink>
-          <NavLink to="/products">Products</NavLink>
+          <NavLink to="/">Products</NavLink>
         </NavSection>
         <NavSection>
           <NavLink to="/">Login</NavLink>
