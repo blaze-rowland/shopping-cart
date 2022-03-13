@@ -1,4 +1,4 @@
-client/node_modules
-server/node_modules
-server/.env
-server/lib
+node_modules/
+lib/
+src/clientapp/node_modules/
+.env
