@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  --width: 100%;
+
   margin: 0 auto;
-  max-width: 1440px;
+  max-width: var(--width);
+`;
+
+export const ContainerGrid = styled(Container)`
+  max-width: unset;
+  margin: inherit;
 `;

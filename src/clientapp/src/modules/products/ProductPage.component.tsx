@@ -1,4 +1,4 @@
-import { Container } from '../../layout/Container/Container.style';
+import { ContainerGrid } from '../../layout/Container/Container.style';
 import { ProductList } from './components/ProductList/ProductList.component';
 import { ProductNavigation } from './components/ProductNav/ProductNavigation.component';
 import { ProductPageContainer } from './ProductPage.style';
@@ -9,9 +9,9 @@ export const ProductPage: React.FC<ProductPageProps> = () => {
   return (
     <ProductPageContainer>
       <ProductNavigation />
-      <Container>
+      <ContainerGrid>
         <ProductList />
-      </Container>
+      </ContainerGrid>
     </ProductPageContainer>
   );
 };

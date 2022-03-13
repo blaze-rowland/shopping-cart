@@ -30,7 +30,7 @@ export const ProductList: React.FC<ProductListProps> = (props) => {
   ));
 
   return products?.length ? (
-    <CardList style={{ marginTop: '2rem;' }}>{productComponent}</CardList>
+    <CardList style={{ marginTop: '2rem' }}>{productComponent}</CardList>
   ) : (
     <Loading />
   );
